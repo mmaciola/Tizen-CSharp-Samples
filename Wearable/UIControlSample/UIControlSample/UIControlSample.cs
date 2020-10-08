@@ -265,6 +265,14 @@ namespace UIControlSample
                     checkBox[i].PivotPoint = PivotPoint.CenterLeft;
                     checkBox[i].ParentOrigin = ParentOrigin.CenterLeft;
 
+                    checkBox[i].CheckImageURLSelector = new StringSelector()
+                    {
+                        Normal = mResourceUrl + "/CheckBox/Unselected.png",
+                        Selected = mResourceUrl + "/CheckBox/Selected.png",
+                        //SelectedFocused = ...,
+                        //Focused = ...
+                    };
+
                     checkBox[i].Scale = new Vector3(0.8f, 0.8f, 0.8f);
                     checkBox[i].Size = new Size(220, 48);
                     checkBox[i].PointSize = mMiddlePointSize + 2;
@@ -296,6 +304,12 @@ namespace UIControlSample
                     radioButton[i].PivotPoint = PivotPoint.CenterLeft;
                     radioButton[i].ParentOrigin = ParentOrigin.CenterLeft;
 
+                    radioButton[i].CheckImageURLSelector = new StringSelector()
+                    {
+                        Normal = mResourceUrl + "/RadioButton/Unselected.png",
+                        Selected = mResourceUrl + "/RadioButton/Selected.png",
+                    };
+
                     radioButton[i].Scale = new Vector3(0.8f, 0.8f, 0.8f);
                     radioButton[i].Size = new Size(220, 48);
                     radioButton[i].PointSize = mMiddlePointSize + 2;
@@ -313,11 +327,23 @@ namespace UIControlSample
                 mSlider.PositionUsesPivotPoint = true;
                 mSlider.PivotPoint = PivotPoint.Center;
                 mSlider.ParentOrigin = ParentOrigin.Center;
-                mSlider.TrackThickness = 4;
-                mSlider.BgTrackColor = new Color(0, 0, 0, 0.1f);
-                mSlider.SlidedTrackColor = new Color(0.05f, 0.63f, 0.9f, 1);
-                mSlider.ThumbSize = new Size(60, 60);
-                mSlider.Size.Width = 300;
+
+                mSlider.ThumbImageURLSelector = new StringSelector()
+                {
+                    Normal = mResourceUrl + "/Slider/Unselected.png",
+                    Pressed = mResourceUrl + "/Slider/Selected.png"
+                };
+                mSlider.ThumbImageBackgroundURLSelector = new StringSelector()
+                {
+                    All = mResourceUrl + "/Slider/Track.png"
+                };
+
+                //mSlider.TrackThickness = 4;
+                //mSlider.BgTrackColor = new Color(0, 0, 0, 0.1f);
+                //mSlider.SlidedTrackColor = new Color(0.05f, 0.63f, 0.9f, 1);
+                //mSlider.ThumbSize = new Size(60, 60);
+
+                mSlider.Size = new Size(300, 30);
                 // Set the Lower Bound and Upper Bound values of the Slider
                 mSlider.MinValue = 0.0f;
                 mSlider.MaxValue = 100.0f;
@@ -353,8 +379,10 @@ namespace UIControlSample
                 mProgress.MinValue = 0.0f;
                 mProgress.MaxValue = 100.0f;
                 mProgress.CurrentValue = 20.0f;
-                mProgress.TrackColor = new Color(0, 0, 0, 0.1f);
-                mProgress.ProgressColor = new Color(0.75f, 0.63f, 0.9f, 1);
+                mProgress.ProgressImageURL = mResourceUrl + "/ProgressBar/img_viewer_progress_0_129_198_100.9.png";
+                mProgress.TrackImageURL = mResourceUrl + "/ProgressBar/img_viewer_progress_255_255_255_100.9.9.png";
+                //mProgress.TrackColor = new Color(0, 0, 0, 0.1f);
+                //mProgress.ProgressColor = new Color(0.75f, 0.63f, 0.9f, 1);
                 view.Add(mProgress);
 
                 // Create TextLabel that notices current progress
@@ -384,6 +412,18 @@ namespace UIControlSample
                 switch_.PivotPoint = PivotPoint.Center;
                 switch_.ParentOrigin = ParentOrigin.Center;
                 switch_.Position = new Position(0, 30);
+
+                switch_.SwitchBackgroundImageURLSelector = new StringSelector
+                {
+                    Normal = mResourceUrl + "/Switch/switch_on.png",
+                    Selected = mResourceUrl + "/Switch/switch_off.png"
+                };
+                switch_.SwitchHandlerImageURLSelector = new StringSelector
+                {
+                    Normal = mResourceUrl + "/Switch/switch_focused_on.png",
+                    Selected = mResourceUrl + "/Switch/switch_focused_off.png"
+                };
+
                 switch_.StateChangedEvent += OnSwitchStateChanged;
                 view.Add(switch_);
             }
